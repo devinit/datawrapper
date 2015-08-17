@@ -44,6 +44,11 @@ DatawrapperVisualization::register($plugin, array(
             'type' => 'checkbox',
             'default' => true,
             'label' => __('Filter missing values')
+        ),
+        "force-labels-off" => array(
+            "type" => "checkbox",
+            "label" => __("Force data-labels off"),
+            "default" => false
         )
     ),
     'libraries' => array()

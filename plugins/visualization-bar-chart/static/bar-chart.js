@@ -103,14 +103,16 @@
                     bar.attr(me.theme().barChart.barAttrs);
                 }
 
-                if (lpos.show_val) {
-                    me.registerLabel(me.label(lpos.val_x, lpos.top, formatValue(barv.value, true),{
-                        // w: 40,
-                        align: lpos.val_align,
-                        cl: 'value' + lpos.lblClass
-                    }), barv.name);
-                }
-
+                forceOff = me.get('force-labels-off');
+                if (!forceOff) {
+                    if (lpos.show_val) {
+                        me.registerLabel(me.label(lpos.val_x, lpos.top, formatValue(barv.value, true),{
+                            // w: 40,
+                            align: lpos.val_align,
+                            cl: 'value' + lpos.lblClass
+                        }), barv.name);
+                    }
+                };
                 if (lpos.show_lbl) {
                     me.registerLabel(me.label(lpos.lbl_x , lpos.top, barv.name, {
                         w: Math.min(me.labelWidth(barv.name, 'series')+20, MAX_LABEL_WIDTH),
@@ -119,6 +121,7 @@
                         cl: 'series' + lpos.lblClass
                     }), barv.name, me.axes().labels, barv.row);
                 }
+
 
                 c.lastBarY = Math.max(c.lastBarY, d.y + d.height);
             };

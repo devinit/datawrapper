@@ -50,3 +50,7 @@
 .chart .label.annotation span {
   background: transparent;
 }
+
+* {
+  font-family:'Fira sans',sans-serif;
+}

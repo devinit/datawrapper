@@ -16,6 +16,14 @@
                 chart_width = c.w - c.lpad - c.rpad,
                 series_gap = 0.05, // pull from theme
                 row_gap = 0.01;
+                
+            row = 0;
+            if (!_.isUndefined(me.get('selected-row'))) {
+                row = me.get('selected-row', 0);
+                if (row > dataset.numRows()) row = 0;
+            }
+
+            me.__lastRow = row;
 
             me.axesDef = me.axes();
             if (!me.axesDef) return;
@@ -83,6 +91,14 @@
             me.renderingComplete();
         },
 
+        getBarColumn: function() {
+            var me = this,
+                filter = me.__lastRow;
+            if (_.isUndefined(filter)) throw 'filter must not be undefined';
+            if (_.isUndefined(me.axesDef.columns[filter])) return null;
+            return me.dataset.column(me.axesDef.columns[filter]);
+        },
+        
         update: function() {
             var me = this,
                 c = me.__canvas,
@@ -104,6 +120,19 @@
                             stroke: stroke,
                             fill: fill
                         };
+                    // add value labels
+                    if (r==column.length-1 && me.meta.title=="Stacked Column Chart" && me.get("top-labels")) {
+                        var totalVal = 0;
+                        for(var i = 0; i < column.length; i++){
+                            totalVal+=column.val(i)
+                        };
+                        formatter = me.chart().columnFormatter(me.getBarColumn());
+                        me.registerLabel(me.label(d.x + 0.5*d.w, d.y-5, formatter(totalVal, true),{
+                            w: d.w,
+                            align: 'center',
+                            cl: 'value'
+                        }), column.name);
+                    };
 
                     me.__bars[key] = me.__bars[key] || me.registerElement(c.paper.rect().attr(bar_attrs), column.name(), r);
                     if (me.theme().columnChart.barAttrs) {
@@ -254,7 +283,16 @@
                 domain = me.__domain,
                 styles = me.__styles,
                 ticks = me.getYTicks(yscale, c.h, true);
-
+                
+            yTicksManual = me.get('y-ticks-manual') ? me.get('y-ticks') : false;
+            if (yTicksManual){
+              ticks = [];
+              for(var i = 0; i <= yTicksManual; i++){
+                    var tick = domain[0] + (i*(domain[1]/(yTicksManual)));
+                    ticks.push(tick);
+                };  
+            };
+            
             ticks = ticks.filter(function(val, t) {
                 return val >= domain[0] && val <= domain[1];
             });

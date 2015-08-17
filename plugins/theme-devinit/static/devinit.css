@@ -1,0 +1,134 @@
+
+.chart.theme-devinit .chartMenu a {
+    color: #ba0c2f;
+}
+
+.chart.theme-devinit {
+    background: #fff;
+    font-weight: 400;
+    color: #333333;
+
+}
+
+.chart.theme-devinit a {
+    color: #ba0c2f;
+    text-decoration: none;
+}
+
+.chart.theme-devinit a:hover {
+    color: #820820;
+    text-decoration: underline;
+}
+
+.chart.theme-devinit h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align: left;
+}
+
+.chart.theme-devinit p { margin: 15px 0; line-height: 19px;}
+
+
+.chart.theme-devinit.line-chart .label.tooltip span {
+    background: none!important;
+}
+
+/*.chart.theme-devinit.line-chart .label.tooltip.inverted span {
+    color: #fff!important;
+}
+
+.chart.theme-devinit .label span {
+    text-shadow: 0 0 2px #272B30;
+}
+.chart.theme-devinit .label.inverted span {
+    text-shadow: none;
+}*/
+
+.chart.theme-devinit .label.highlighted, .label.axis {
+    font-size: 12px;
+    z-index: 100;
+}
+
+/*.chart.theme-devinit .line-chart .label.highlighted span,
+.chart.theme-devinit .line-chart .label.axis span {
+    background: #272B30;
+    color: #eee;
+}*/
+.chart.theme-devinit .label.hover {
+    font-weight: bold;
+}
+
+/*.chart.theme-devinit .pie-chart .label.hover span,
+.chart.theme-devinit .donut-chart .label.hover span {
+    color: #fff;
+}
+
+.chart.theme-devinit .label.inverted span {
+    color: #000!important;
+}*/
+
+.chart.theme-devinit #footer .footer-left {
+    padding-left: 0;
+    left: 0;
+}
+/*
+.chart.theme-devinit .tooltip .content {
+    background-color: #202328;
+    border: 1px solid #101214;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5) inset;
+    padding: 5px 8px;
+}*/
+
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+svg .axis, svg .tick, svg .grid, svg rect {
+    shape-rendering: crispEdges;
+}
+
+.label.rotate90 {
+    -moz-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.label.smaller span {
+    font-size: 80%;
+}
+/*
+.chart .chartMenu {
+    background: #272B30;
+    box-shadow: 0 0 5px #444;
+}
+
+.chart .chartMenu a {
+    color: #bbb;
+}
+
+.chart .chartMenu a:hover {
+    color: #fff;
+}*/
+
+.chart.theme-devinit .datatable-default thead th {
+    color: #ba0c2f;
+    text-align:center;
+}
+
+.chart.theme-devinit .dw-chart-notes {
+    margin-top:2em;
+    font-style:normal;
+}
+
+.chart.theme-devinit .dw-chart-notes.hidden {
+    margin-top:0;
+}

@@ -8,7 +8,7 @@
         },
 
         groupAfter: function() {
-            return 10;
+            return 999;
         }
 
     });

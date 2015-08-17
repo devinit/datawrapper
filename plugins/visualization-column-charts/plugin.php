@@ -52,11 +52,30 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                     "label" => __("Ignore missing values", $id),
                     "default" => false
                 ),
+                "force-labels-off" => array(
+                    "type" => "checkbox",
+                    "label" => __("Force data-labels off", $id),
+                    "default" => false
+                ),
                 "absolute-scale" => array(
                     "type" => "checkbox",
                     "label" => __("Use the same scale for all columns", $id),
                     "depends-on" => array(
                         "chart.min_columns[columns]" => 2
+                    )
+                ),
+                "y-ticks-manual" => array(
+                    "type" => "checkbox",
+                    "label" => __("Manually set Y axis ticks", $id),
+                    "default" => false
+                ),
+                "y-ticks" => array(
+                    "type" => "number",
+                    "label" => "Number of Y axis ticks",
+                    "min" => 0,
+                    "max" => 999,
+                    "depends-on" => array(
+                        "y-ticks-manual" => true
                     )
                 ),
                 "grid-lines" => array(
@@ -113,6 +132,20 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                     "depends-on" => array(
                         "chart.min_value[columns]" => '<0'
                     )
+                ),
+                "y-ticks-manual" => array(
+                    "type" => "checkbox",
+                    "label" => __("Manually set Y axis ticks", $id),
+                    "default" => false
+                ),
+                "y-ticks" => array(
+                    "type" => "number",
+                    "label" => "Number of Y axis ticks",
+                    "min" => 0,
+                    "max" => 999,
+                    "depends-on" => array(
+                        "y-ticks-manual" => true
+                    )
                 )
             ),
             "libraries" => array()
@@ -153,6 +186,10 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                     "type" => "checkbox",
                     "label" => __("Reverse order", $id)
                 ),
+                "top-labels" => array(
+                    "type" => "checkbox",
+                    "label" => __("Labels on top", $id)
+                ),
                 "negative-color" => array(
                     "type" => "checkbox",
                     "label" => __("Use different color for negative values", $id)
@@ -167,6 +204,20 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                     "label" => __("Let user switch mode"),
                     "depends-on" => array(
                         "normalize" => true
+                    )
+                ),
+                "y-ticks-manual" => array(
+                    "type" => "checkbox",
+                    "label" => __("Manually set Y axis ticks", $id),
+                    "default" => false
+                ),
+                "y-ticks" => array(
+                    "type" => "number",
+                    "label" => "Number of Y axis ticks",
+                    "min" => 0,
+                    "max" => 999,
+                    "depends-on" => array(
+                        "y-ticks-manual" => true
                     )
                 )
             ),

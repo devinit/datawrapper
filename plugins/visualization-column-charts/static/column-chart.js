@@ -40,6 +40,9 @@
 
             sortBars = me.get('sort-values');
             reverse = me.get('reverse-order');
+            topLabels = me.get('labels-on-top');
+            forceOff = me.get('force-labels-off');
+            yTicksManual = me.get('y-ticks-manual') ? me.get('y-ticks') : false;
 
             c = me.initCanvas({ tpad: 20 }, 0, filterH);
 
@@ -133,20 +136,22 @@
                 spos = me.labelPosition(barv, s, 'series');
 
             // add value labels
-            me.registerLabel(me.label(lpos.left, lpos.top, formatter(barv.value, true),{
-                w: lpos.width,
-                align: 'center',
-                cl: 'value outline ' + (alwaysShow ? '' : ' showOnHover')
-            }), barv.name);
-
-            if (chart.hasHighlight() && chart.isHighlighted(barv.name)) {
-                lblcl.push('highlighted');
-            }
-            if (d.bw < 30) {
-                halign = 'right';
-            }
-            if (d.bw < 20) {
-                lblcl.push('smaller');
+            if (!forceOff) {
+                me.registerLabel(me.label(lpos.left, lpos.top, formatter(barv.value, true),{
+                    w: lpos.width,
+                    align: 'center',
+                    cl: 'value outline ' + (alwaysShow ? '' : ' showOnHover')
+                }), barv.name);
+    
+                if (chart.hasHighlight() && chart.isHighlighted(barv.name)) {
+                    lblcl.push('highlighted');
+                }
+                if (d.bw < 30) {
+                    halign = 'right';
+                }
+                if (d.bw < 20) {
+                    lblcl.push('smaller');
+                }
             }
             // add column label
             if (!/^X\.\d+$/.test(barv.name)) {
@@ -375,8 +380,16 @@
                 gridLines = me.__gridLines = me.__gridLines || {},
                 formatter = me.chart().columnFormatter(me.getBarColumn());
 
+            if (yTicksManual){
+              ticks = [];
+              for(var i = 0; i <= yTicksManual; i++){
+                    var tick = domain[0] + (i*(domain[1]/(yTicksManual)));
+                    ticks.push(tick);
+                };  
+            };
+            
             if (!me.gridVisible()) ticks = [];
-
+            
             ticks = ticks.filter(function(val, t) {
                 return val >= domain[0] && val <= domain[1];
             });

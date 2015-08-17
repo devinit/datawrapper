@@ -4,7 +4,7 @@
     dw.visualization.register('stacked-column-chart', 'grouped-column-chart', {
 
         // some config
-        _showValueLabels: function() { return false; },
+        _showValueLabels: function() { return true; },
 
         /*
          * returns a modified version of the original columns

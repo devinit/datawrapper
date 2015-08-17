@@ -112,7 +112,7 @@ define(function() {
             var allElements = traverse(svg);
             var i = allElements.length;
             while (i--){
-                explicitlySetStyle(allElements[i]);
+                //explicitlySetStyle(allElements[i]);
             }
         }
     };
