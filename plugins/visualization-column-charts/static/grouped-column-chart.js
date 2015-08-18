@@ -110,7 +110,8 @@
                     me._color_opts.key = me.axes(true).labels.val(r);
                     var d = me.barDimensions(column, s, r),
                         fill = me.getColor(column, r, me._color_opts),
-                        stroke = chroma.color(fill).darken(10).hex(),
+                        //stroke = chroma.color(fill).darken(10).hex(),
+                        stroke = chroma.color(fill).hex(),
                         key = column.name()+'-'+r,
                         bar_attrs = {
                             x: d.x,
@@ -120,7 +121,7 @@
                             stroke: stroke,
                             fill: fill
                         };
-                    // add value labels
+                    // add top value labels for stack
                     if (r==column.length-1 && me.meta.title=="Stacked Column Chart" && me.get("top-labels")) {
                         var totalVal = 0;
                         for(var i = 0; i < column.length; i++){
@@ -133,6 +134,21 @@
                             cl: 'value'
                         }), column.name);
                     };
+                    //Add mid-labels for group/stack
+                    if (me.get("sticky-labels")) {
+                        //var visibleLbls = [];
+                        //_.each(me.__barLbls, function(lbl, key) {
+                        //        lbl.show();
+                        //        visibleLbls.push(lbl.data('label'));
+                        //});
+                        //me.optimizeLabelPositions(visibleLbls, 5);
+                        formatter = me.chart().columnFormatter(me.getBarColumn());
+                        me.registerLabel(me.label(d.x + 0.5*d.w, d.y-5, formatter(totalVal, true),{
+                            w: d.w,
+                            align: 'center',
+                            cl: 'value'
+                        }), column.name);
+                    }
 
                     me.__bars[key] = me.__bars[key] || me.registerElement(c.paper.rect().attr(bar_attrs), column.name(), r);
                     if (me.theme().columnChart.barAttrs) {
@@ -287,7 +303,7 @@
             yTicksManual = me.get('y-ticks-manual') ? me.get('y-ticks') : false;
             if (yTicksManual){
               ticks = [];
-              for(var i = 0; i <= yTicksManual; i++){
+              for(var i = 1; i <= yTicksManual; i++){
                     var tick = domain[0] + (i*(domain[1]/(yTicksManual)));
                     ticks.push(tick);
                 };  
@@ -375,7 +391,8 @@
                 // animate the bar fill & stroke
                 _.each(me.__elements[column.name()], function(el) {
                     fill = getFill(column, el);
-                    stroke = chroma.color(fill).darken(10).hex();
+                    //stroke = chroma.color(fill).darken(10).hex();
+                    stroke = chroma.color(fill).hex();
                     if (el.attrs.fill != fill || el.attrs.stroke != stroke)
                         el.animate({ fill: fill, stroke: stroke }, 50);
                 });

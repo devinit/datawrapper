@@ -126,6 +126,10 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                     "type" => "checkbox",
                     "label" => __("Reverse order", $id)
                 ),
+                "sticky-labels" => array(
+                    "type" => "checkbox",
+                    "label" => __("Labels always on", $id)
+                ),
                 "negative-color" => array(
                     "type" => "checkbox",
                     "label" => __("Use different color for negative values", $id),
@@ -189,6 +193,10 @@ class DatawrapperPlugin_VisualizationColumnCharts extends DatawrapperPlugin_Visu
                 "top-labels" => array(
                     "type" => "checkbox",
                     "label" => __("Labels on top", $id)
+                ),
+                "sticky-labels" => array(
+                    "type" => "checkbox",
+                    "label" => __("Labels on segment", $id)
                 ),
                 "negative-color" => array(
                     "type" => "checkbox",

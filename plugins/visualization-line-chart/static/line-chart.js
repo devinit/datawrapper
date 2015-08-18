@@ -403,7 +403,7 @@
             function yAxisWidth(h) {
                 var ticks = vis.getYTicks(scales.y, h, extendRange, useLogScale),
                     maxw = 0;
-
+                    
                 _.each(ticks, function(val, t) {
                     val = formatter.y1(val, false);
                     maxw = Math.max(maxw, vis.labelWidth(val));
@@ -419,6 +419,15 @@
                     ticks = vis.getYTicks(scales.y, c.h, extendRange, useLogScale);
 
                 if (!extendRange && ticks[ticks.length-1] != domain[1]) ticks.push(domain[1]);
+                
+                yTicksManual = vis.get('y-ticks-manual') ? vis.get('y-ticks') : false;
+                if (yTicksManual){
+                  ticks = [];
+                  for(var i = 0; i <= yTicksManual; i++){
+                        var tick = domain[0] + (i*(domain[1]/(yTicksManual)));
+                        ticks.push(tick);
+                    };  
+                };
 
                 if ($('body').hasClass('fullscreen')) {
                     theme.horizontalGrid['stroke-width'] = 2;
@@ -542,9 +551,13 @@
                         (daysDelta >= 3650 && new_decade)) ||  // less between two and ten years
                         real_data_as_ticks
                     ) {
-                        if (theme.horizontalGrid) {
+                        if (theme.verticalGrid) {
                             vis.path('M'+[x, c.h - c.bpad] + 'V' + c.tpad, 'grid')
-                                .attr(theme.horizontalGrid);
+                                .attr(theme.verticalGrid);
+                        }
+                        else {
+                            vis.path('M'+[x, c.h - c.bpad] + 'V' + c.tpad, 'grid')
+                                .attr(theme.horizontalGrid);    
                         }
                     } else {
                         l.el.addClass('minor-tick');

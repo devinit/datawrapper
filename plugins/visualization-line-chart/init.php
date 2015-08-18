@@ -42,6 +42,20 @@ DatawrapperVisualization::register($plugin, array(
             ),
             'help' => __('Show the labels right nearby the line ends instead of a separate legend')
         ),
+        "y-ticks-manual" => array(
+            "type" => "checkbox",
+            "label" => "Manually set Y axis ticks",
+            "default" => false
+        ),
+        "y-ticks" => array(
+            "type" => "number",
+            "label" => "Number of Y axis ticks",
+            "min" => 0,
+            "max" => 999,
+            "depends-on" => array(
+                "y-ticks-manual" => true
+            )
+        ),
         'legend-position' => array(
             'type' => 'radio-left',
             'label' => __('Legend position'),

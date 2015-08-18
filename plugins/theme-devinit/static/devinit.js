@@ -139,7 +139,7 @@
             'stroke-width': 1
         },
         // make strokes a little darker than the fill
-        darkenStroke: 18
+        darkenStroke: false
     },
 
     /*
@@ -149,8 +149,10 @@
         // you can customize bar attributes
         barAttrs: {
             'stroke-width': 1
-        }
+        },
+        darkenStroke: false
     },
+    darkenStroke:false,
 
     /*
      * attributes of x axis, if there is any
@@ -178,6 +180,7 @@
     horizontalGrid: {
         stroke: '#cccccc',
         strokeWidth: 1
+        //strokeDasharray: ". "
     },
 
     /*
@@ -186,7 +189,11 @@
      * you can define the grid line attributes here, e.g.
      * verticalGrid: { stroke: 'black', strokeOpacity: 0.4 }
      */
-    verticalGrid: false,
+    verticalGrid: {
+        stroke: '#cccccc',
+        strokeWidth: 1,
+        strokeDasharray:false
+    },
 
     /*
      * draw a frame around the chart area (only in line chart)
